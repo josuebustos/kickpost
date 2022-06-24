@@ -9,7 +9,7 @@ npm install -g sharp-cli@^1.10.0
 Install a fresh expo base app
 expo init my-app --template @native-base/expo-template
 
-## Initialize E
+## Install Supporting Packages for React Navigation
 Install these packages for native react router navigation
 
 expo install react-native-screens react-native-safe-area-context

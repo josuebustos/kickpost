@@ -59,3 +59,21 @@ Could not find node. Make sure it is in bash PATH or set the NODE_BINARY environ
 $ sudo ln -s $(which node) /usr/local/bin/node
 
 source: https://stackoverflow.com/questions/67337836/new-rn-project-in-m1-mbp-built-failed-could-not-find-node-make-sure-it-is-in
+
+
+## 
+Installing react native fontawesome icon library:
+
+https://fontawesome.com/docs/web/use-with/react-native#how-to-install
+
+```bash
+Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force, or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+```
+
+npm i --save --legacy-peer-deps @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg
+
+npm i  --legacy-peer-deps --save @fortawesome/free-solid-svg-icons
+npm i --legacy-peer-deps --save @fortawesome/free-brands-svg-icons
+npm i --legacy-peer-deps --save @fortawesome/free-regular-svg-icons

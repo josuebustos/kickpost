@@ -50,7 +50,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
         return (
           <TouchableOpacity
             // Warning: Each child in a list should have a unique "key" prop.
-            key={["my-tabar" + `${Math.random().toString()}`]}
+            key={["a-" + `${Math.random().toString()}`]}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}

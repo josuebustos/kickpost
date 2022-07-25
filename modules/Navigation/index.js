@@ -1,85 +1,105 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SearchTab, RewardsTab } from "../../components"
-
-const SearchScreen = () => {
-  return (
-    <SearchTab />
-  );
-}
-const RewardsScreen = () => {
-  return (
-    <RewardsTab />
-  );
-}
-
-const MyTabBar = ({ state, descriptors, navigation }) => {
-  return (
-    <View style={{ flexDirection: 'row' }}>
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-              ? options.title
-              : route.name;
-
-        const isFocused = state.index === index;
-
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-          });
-
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
-
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
-        };
-
-        return (
-          <TouchableOpacity
-            // Warning: Each child in a list should have a unique "key" prop.
-            key={["a-" + `${Math.random().toString()}`]}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={{ flex: 1 }}
-          >
-            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-              {label}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
-    </View>
-  );
-}
+import { SearchScreen, RewardsScreen, ProfileScreen, NetworkScreen } from "../../components"
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+// https://fontawesome.com/v6/icons/circle-nodes?s=solid
+import {
+  faSearch,
+  faUser,
+  faStar,
+  faCircleNodes
+} from "@fortawesome/free-solid-svg-icons";
 
 const Tab = createBottomTabNavigator();
 
-const Navigation = () => {
+function Search() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator tabBar={(props) => <MyTabBar {...props} />}>
-        <Tab.Screen name="Search" component={SearchScreen} />
-        <Tab.Screen name="Rewards" component={RewardsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SearchScreen />
   );
 }
 
-export default Navigation
+function Rewards() {
+  return (
+    <RewardsScreen />
+  );
+}
+
+function Network() {
+  return (
+    <NetworkScreen />
+  );
+}
+
+function Profile() {
+  return (
+    <ProfileScreen />
+  );
+}
+
+const HomeTabs = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        "tabBarShowLabel": false,
+        "tabBarStyle": [
+          {
+            "display": "flex"
+          },
+          null
+        ],
+        headerTitleAlign: "center",
+        tabBarActiveTintColor: '#e91e63'
+      }}>
+
+      <Tab.Screen name="Search" component={Search} 
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faSearch} size={size} style={{ color: color }} />
+            // <MaterialCommunityIcons name="alien" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tab.Screen name="Rewards" component={Rewards}
+        options={{
+          tabBarLabel: 'Rewards',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faStar} size={size} style={{ color: color }} />
+          ),
+        }}
+      />
+
+      <Tab.Screen name="Network" component={Network}
+        options={{
+          tabBarLabel: 'Network',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faCircleNodes} size={size} style={{ color: color }} />
+          ),
+        }}
+      />
+      <Tab.Screen name="Profile" component={Profile}
+        options={{
+          tabBarBadge: 3,
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesomeIcon icon={faUser} size={size} style={{ color: color }} />
+            // <FontAwesome name="fa-mug-hot" size={24} color={color} />
+          ),
+        }}
+      />
+
+    </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <HomeTabs />
+    </NavigationContainer>
+  );
+}

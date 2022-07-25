@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 
-const SearchTab = () => {
+const ProfileScreen = () => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Search Tab!</Text>
+            <Text>Profile Tab!</Text>
         </View>
     );
 }
 
-export default SearchTab
+export default ProfileScreen

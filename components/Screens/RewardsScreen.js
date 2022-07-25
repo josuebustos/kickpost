@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 
-const RewardsTab = () => {
+const RewardsScreen = () => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Rewards Tab!</Text>
@@ -8,4 +8,4 @@ const RewardsTab = () => {
     );
 }
 
-export default RewardsTab
+export default RewardsScreen

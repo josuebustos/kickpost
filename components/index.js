@@ -1,7 +1,11 @@
-import SearchTab from './Tabs/SearchTab';
-import RewardsTab from './Tabs/RewardsTab'
+import SearchScreen from './Screens/SearchScreen';
+import RewardsScreen from './Screens/RewardsScreen'
+import NetworkScreen from './Screens/NetworkScreen'
+import ProfileScreen from './Screens/ProfileScreen'
 
 export { 
-    SearchTab,
-    RewardsTab
+    SearchScreen,
+    RewardsScreen,
+    NetworkScreen,
+    ProfileScreen,
 };
